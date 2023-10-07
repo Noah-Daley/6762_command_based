@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class ArmPIDCmd extends CommandBase{
@@ -10,7 +11,7 @@ public class ArmPIDCmd extends CommandBase{
 
     public ArmPIDCmd(ArmSubsystem armSubsytem, double setpoint){
         this.armSubsystem = armSubsytem;
-        this.pidController = new PIDController(3, 0, 0.8);
+        this.pidController = new PIDController(ArmConstants.kP, ArmConstants.kI, ArmConstants.kD);
         pidController.setSetpoint(setpoint);
         addRequirements(armSubsystem);
     }
@@ -30,7 +31,7 @@ public class ArmPIDCmd extends CommandBase{
 
     @Override
     public void end(boolean interrupted) {
-        armSubsystem.setMotor(0);
+        armSubsystem.setMotor(ArmConstants.kStopSpeed);
         System.out.println("ArmPIDCmd ended!");
     }
 

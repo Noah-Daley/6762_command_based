@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
   
-  private CANSparkMax Motor1 = new CANSparkMax(1, MotorType.kBrushless);
-  private CANSparkMax Motor2 = new CANSparkMax(2, MotorType.kBrushless);
+  private CANSparkMax Motor1 = new CANSparkMax(DriveConstants.kRightMotorPort, MotorType.kBrushless);
+  private CANSparkMax Motor2 = new CANSparkMax(DriveConstants.kLeftMotorPort, MotorType.kBrushless);
   //private CANSparkMax Motor3 = new CANSparkMax(3, MotorType.kBrushless);
-  private CANSparkMax Motor4 = new CANSparkMax(4, MotorType.kBrushless);
+  //private CANSparkMax Motor4 = new CANSparkMax(4, MotorType.kBrushless);
   
   private MotorControllerGroup Left = new MotorControllerGroup(Motor2);
   private MotorControllerGroup Right = new MotorControllerGroup(Motor1);
@@ -26,11 +27,10 @@ public class DriveSubsystem extends SubsystemBase {
  
   private RelativeEncoder m1_Encoder;
   private RelativeEncoder m2_Encoder;
-  private final double kDriveTick2Feet = (1 / 42) * 4 * (6 * Math.PI) * (1 / 12);
   
   public double getEncoderFeet() {
-    double leftPosition = m1_Encoder.getPosition() * kDriveTick2Feet;
-    double rightPosition = m2_Encoder.getPosition() * kDriveTick2Feet;
+    double leftPosition = m1_Encoder.getPosition() * DriveConstants.kEncoderTick2Feet;
+    double rightPosition = m2_Encoder.getPosition() * DriveConstants.kEncoderTick2Feet;
     
     double distance = (leftPosition + rightPosition) / 2;
     return (distance);
@@ -40,7 +40,7 @@ public class DriveSubsystem extends SubsystemBase {
     Motor1.restoreFactoryDefaults();
     Motor2.restoreFactoryDefaults();
     //Motor3.restoreFactoryDefaults();
-    Motor4.restoreFactoryDefaults();
+    //Motor4.restoreFactoryDefaults();
 
     Motor2.setInverted(true);
     Motor2.burnFlash();

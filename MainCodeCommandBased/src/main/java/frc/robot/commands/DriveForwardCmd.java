@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveForwardCmd extends CommandBase{
@@ -23,12 +24,12 @@ public class DriveForwardCmd extends CommandBase{
   
     @Override
     public void execute() {
-        driveSubsystem.setMotors(0, 0.5);
+        driveSubsystem.setMotors(DriveConstants.kAutoDriveForwardRotation, DriveConstants.kAutoDriveForwardSpeed);
     }
   
     @Override
     public void end(boolean interrupted) {
-      driveSubsystem.setMotors(0, 0);
+      driveSubsystem.setMotors(DriveConstants.kStopRotationSpeed, DriveConstants.kStopDriveSpeed);
       System.out.println("DriveForwardCmd ended!");
     }
   

@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.IntakeConstants;
 
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANSparkMax;
@@ -10,7 +11,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class IntakeSubsystem extends SubsystemBase{
     //Motor6
-    private CANSparkMax intakeMotor = new CANSparkMax(6, MotorType.kBrushed);
+    private CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.kMotorPort, MotorType.kBrushed);
 
     public IntakeSubsystem() {
         intakeMotor.setIdleMode(IdleMode.kBrake);

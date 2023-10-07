@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class ArmJoystickCmd extends CommandBase {
@@ -30,7 +31,7 @@ public class ArmJoystickCmd extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    armSubsystem.setMotor(0);
+    armSubsystem.setMotor(ArmConstants.kStopSpeed);
     System.out.println("ArmJoystickCmd ended!");
   }
 
